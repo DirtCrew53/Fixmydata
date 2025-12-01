@@ -17,11 +17,12 @@ To install the stable version from PyPI, run:
 pip install fixmydata
 
 # Usage
+
 Import the Library
 # Import the library
 from fixmydata import DataCleaner, DataValidator, OutlierDetector
 
-# Example Usage
+Example Usage
 
 import pandas as pd
 from fixmydata import DataCleaner, DataValidator, OutlierDetector
