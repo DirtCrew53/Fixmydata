@@ -1,6 +1,8 @@
 # cleaning.py
 from __future__ import annotations
 
+from typing import List, Optional
+
 import pandas as pd
 from pandas.api import types as pd_types
 
@@ -14,7 +16,7 @@ class DataCleaner:
         self._data = self._data.drop_duplicates()
         return self._data
 
-    def fill_missing(self, strategy: str = "mean", columns: list[str] | None = None) -> pd.DataFrame:
+    def fill_missing(self, strategy: str = "mean", columns: Optional[List[str]] = None) -> pd.DataFrame:
         """Fill missing values using the chosen strategy.
 
         Parameters
