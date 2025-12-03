@@ -12,11 +12,12 @@
 ## Installation
 ```bash
 pip install fixmydata
-```
+````
 # Usage
-```python 
-import pandas as pd
+
+```python
 from fixmydata import DataCleaner, DataValidator, OutlierDetector
+import pandas as pd
 
 
 data = pd.DataFrame({
@@ -25,14 +26,13 @@ data = pd.DataFrame({
     'Department': ['HR', 'IT', 'Finance', 'HR', 'IT', 'Finance', 'HR', 'IT', 'HR']
 })
 
-# Data Cleaning
+
 cleaner = DataCleaner(data)
 cleaned_data = cleaner.remove_duplicates().fill_missing(strategy="mean").standardize_columns()
 
 print("Cleaned Data:")
 print(cleaned_data)
 
-# Data Validation
 validator = DataValidator(cleaned_data)
 validated_data = validator.validate_non_empty()
 validated_data = validator.validate_range('Age', 20, 60)
@@ -40,7 +40,6 @@ validated_data = validator.validate_range('Age', 20, 60)
 print("\nValidated Data:")
 print(validated_data)
 
-# Outlier Detection
 outlier_detector = OutlierDetector(cleaned_data)
 outliers = outlier_detector.z_score_outliers(threshold=2)
 
