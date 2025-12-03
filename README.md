@@ -2,6 +2,11 @@
 
 `fixmydata` is a Python library designed for cleaning and preprocessing data. It includes essential data cleaning tasks like handling missing values, removing duplicates, detecting outliers, and validating datasets. Built using Object-Oriented Programming (OOP) principles, it is modular, reusable, and easy to extend.
 
+The repository also contains two utility modules:
+
+- `Fixmydata/utils.py` provides simple convenience helpers for loading, saving, and inspecting data frames. These functions are not required by the core classes but are available for quick experimentation in notebooks.
+- `Fixmydata/stats.py` offers lightweight statistical helpers (mean, median, mode, correlation, and outlier filtering) to complement the main cleaning workflows. Like `utils.py`, it is optional and can be imported directly if you want a minimal dependency-free way to explore your data.
+
 ## Features:
 - **Remove Duplicates**: Remove duplicate rows from your data.
 - **Fill Missing Values**: Fill missing values using mean, median, or mode.
