@@ -10,10 +10,6 @@
 - **Modular OOP Design**: Utilizes encapsulation, inheritance, and polymorphism.
 
 ## Installation
-
-### Install via PyPI:
-To install the stable version from PyPI, run:
-```bash
 pip install fixmydata
 
 # Usage
