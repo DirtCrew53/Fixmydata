@@ -8,13 +8,19 @@ from pandas.api import types as pd_types
 class DataCleaner:
     def __init__(self, data: pd.DataFrame):
         self._data = data.copy()  # private attribute to hold the dataframe
+        
+    @property
+    def data(self) -> pd.DataFrame:
+        """Return a copy of the cleaned dataframe."""
 
-    def remove_duplicates(self) -> pd.DataFrame:
+        return self._data.copy()
+
+    def remove_duplicates(self) -> "DataCleaner":
         """Remove duplicate rows from the dataframe."""
         self._data = self._data.drop_duplicates()
-        return self._data
+        return self
 
-    def fill_missing(self, strategy: str = "mean", columns: list[str] | None = None) -> pd.DataFrame:
+    def fill_missing(self, strategy: str = "mean", columns: list[str] | None = None) -> "DataCleaner":
         """Fill missing values using the chosen strategy.
 
         Parameters
@@ -39,7 +45,7 @@ class DataCleaner:
         if strategy == "mode":
             fills = self._data[target_columns].mode(dropna=True).iloc[0]
             self._data[target_columns] = self._data[target_columns].fillna(fills)
-            return self._data
+            return self
 
         numeric_columns = [col for col in target_columns if pd_types.is_numeric_dtype(self._data[col])]
         if not numeric_columns:
@@ -51,13 +57,13 @@ class DataCleaner:
             fills = self._data[numeric_columns].median()
 
         self._data[numeric_columns] = self._data[numeric_columns].fillna(fills)
-        return self._data
+        return self
 
-    def standardize_columns(self) -> pd.DataFrame:
+    def standardize_columns(self) -> "DataCleaner":
         """Normalize column names by lower-casing and collapsing whitespace."""
 
         def _clean_column(col: str) -> str:
             return "_".join(str(col).strip().lower().split())
 
         self._data = self._data.rename(columns=_clean_column)
-        return self._data
+        return self

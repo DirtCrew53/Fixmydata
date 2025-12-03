@@ -46,6 +46,7 @@ cleaned = (
     .remove_duplicates()
     .fill_missing(strategy="mean")
     .standardize_columns()
+    .data
 )
 
 print("Cleaned data:\n", cleaned)
@@ -61,24 +62,25 @@ print("\nRows kept after outlier check:\n", outliers_removed)
 ```
 
 ## Core classes
-- **`DataCleaner`** (`Fixmydata/cleaning.py`)
+- **`DataCleaner`** (`src/fixmydata/cleaning.py`)
   - `remove_duplicates()` drops duplicate rows.
   - `fill_missing(strategy="mean", columns=None)` fills missing values using mean, median, or mode; you can target specific columns.
   - `standardize_columns()` lowercases and normalizes column names.
-- **`DataValidator`** (`Fixmydata/data_validator.py`)
+  - Methods are chainable; access the cleaned DataFrame via the `.data` property.
+- **`DataValidator`** (`src/fixmydata/data_validator.py`)
   - `validate_non_empty()` raises if the DataFrame is empty or contains nulls.
   - `validate_range(column, min_val, max_val)` ensures numeric values stay within bounds.
-- **`OutlierDetector`** (`Fixmydata/outlier_detector.py`)
+- **`OutlierDetector`** (`src/fixmydata/outlier_detector.py`)
   - `z_score_outliers(threshold=3)` keeps rows whose numeric columns fall within the Z-score threshold.
   - `iqr_outliers()` filters rows outside the interquartile range fence.
-- **Statistics helpers** (`Fixmydata/stats.py`)
+- **Statistics helpers** (`src/fixmydata/stats.py`)
   - Utility functions such as `calculate_mean`, `calculate_median`, `calculate_mode`, `calculate_std_dev`, and `correlation` for quick descriptive analysis.
 
 ## Project structure
-- `Fixmydata/`: Library source code organized by feature (cleaning, validation, outlier detection, statistics).
+- `src/fixmydata/`: Library source code organized by feature (cleaning, validation, outlier detection, statistics).
+- `tests/`: Automated tests that mirror the public API (run with `pytest`).
+- `examples/`: Walkthrough notebooks demonstrating the API end-to-end.
 - `datasets/`: Example datasets you can use while experimenting.
-- `demo.ipynb`: A walkthrough notebook that demonstrates the API end-to-end.
-- `test/`: Automated tests that mirror the public API.
 
 ## Contributing
 Contributions and bug reports are welcome. Please open an issue or pull request on GitHub describing the change you’d like to make. Make sure to add or update tests alongside code changes.
