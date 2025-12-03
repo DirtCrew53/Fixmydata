@@ -10,13 +10,14 @@
 - **Modular OOP Design**: Utilizes encapsulation, inheritance, and polymorphism.
 
 ## Installation
-pip install fixmydata
-
-# Usage
 ```bash
+pip install fixmydata
+````
+# Usage
+
+```python
 from fixmydata import DataCleaner, DataValidator, OutlierDetector
 import pandas as pd
-from fixmydata import DataCleaner, DataValidator, OutlierDetector
 
 
 data = pd.DataFrame({
