@@ -13,30 +13,24 @@
 pip install fixmydata
 
 # Usage
-Import the Library
-# Import the library
 from fixmydata import DataCleaner, DataValidator, OutlierDetector
-
-# Example Usage
-
 import pandas as pd
 from fixmydata import DataCleaner, DataValidator, OutlierDetector
 
-# Sample Data
+
 data = pd.DataFrame({
     'Age': [22, 25, 27, 30, 28, None, 29, 27, 27],
     'Salary': [50000, 55000, None, 60000, 62000, 64000, 58000, 57000, None],
     'Department': ['HR', 'IT', 'Finance', 'HR', 'IT', 'Finance', 'HR', 'IT', 'HR']
 })
 
-# Data Cleaning
+
 cleaner = DataCleaner(data)
 cleaned_data = cleaner.remove_duplicates().fill_missing(strategy="mean").standardize_columns()
 
 print("Cleaned Data:")
 print(cleaned_data)
 
-# Data Validation
 validator = DataValidator(cleaned_data)
 validated_data = validator.validate_non_empty()
 validated_data = validator.validate_range('Age', 20, 60)
@@ -44,7 +38,6 @@ validated_data = validator.validate_range('Age', 20, 60)
 print("\nValidated Data:")
 print(validated_data)
 
-# Outlier Detection
 outlier_detector = OutlierDetector(cleaned_data)
 outliers = outlier_detector.z_score_outliers(threshold=2)
 
