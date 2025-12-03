@@ -55,6 +55,11 @@ print(inliers)
 - `Fixmydata.utils`: CSV I/O helpers, column name normalization, null counting, and DataFrame info display.
 - `Fixmydata.stats`: Basic descriptive statistics and standalone outlier helpers.
 
-## Contributing
+## Contributors
 
-Issues and pull requests are welcome. Please ensure new features include tests where practical and keep the API surface minimal and focused on data quality ergonomics.
+| Name                  | Role / Position | Main Contribution                           |
+| --------------------- | --------------- | ------------------------------------------- |
+| Johann Lloyd Megalbio | Leader          | Project management and overall coordination |
+| Albrien Dealino       | Developer       | Core coding and development tasks           |
+| Rafael John Calingin  | Developer       | Coding and implementation of key features   |
+| Shawn Bolores Sillote | Developer       | Development of system modules and functions |

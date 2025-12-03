@@ -1,48 +1,65 @@
-# fixmydata - A Python Library for Data Cleaning
+# Fixmydata
 
-`fixmydata` is a Python library designed for cleaning and preprocessing data. It includes essential data cleaning tasks like handling missing values, removing duplicates, detecting outliers, and validating datasets. Built using Object-Oriented Programming (OOP) principles, it is modular, reusable, and easy to extend.
-
-## Features:
-- **Remove Duplicates**: Remove duplicate rows from your data.
-- **Fill Missing Values**: Fill missing values using mean, median, or mode.
-- **Detect and Remove Outliers**: Detect outliers using Z-score and IQR methods.
-- **Data Validation**: Ensure data is within specified ranges and non-empty.
-- **Modular OOP Design**: Utilizes encapsulation, inheritance, and polymorphism.
+Fixmydata is a lightweight helper library built on top of pandas for cleaning, validating, and inspecting tabular datasets. It provides quick, chainable utilities for removing common data issues so you can focus on analysis.
 
 ## Installation
+
+The project targets Python 3.7+ and depends on pandas and numpy. You can install the package from source by cloning the repository and installing with pip:
+
 ```bash
-pip install fixmydata
+pip install -e .
 ```
-# Usage
-```python 
+
+## Features
+
+- **Cleaning**: Deduplicate rows, drop or fill missing values, remove columns, and trim whitespace with `DataCleaner`.
+- **Validation**: Assert value ranges and check for missing or empty data with `DataValidator`.
+- **Outlier filtering**: Identify inliers using Z-score or IQR methods while ignoring non-numeric columns via `OutlierDetector`.
+- **Utilities**: CSV load/save helpers, column name normalization, null counting, and quick DataFrame introspection.
+
+## Quickstart
+
+```python
 import pandas as pd
-from fixmydata import DataCleaner, DataValidator, OutlierDetector
+from Fixmydata import DataCleaner, DataValidator, OutlierDetector
 
-
-data = pd.DataFrame({
-    'Age': [22, 25, 27, 30, 28, None, 29, 27, 27],
-    'Salary': [50000, 55000, None, 60000, 62000, 64000, 58000, 57000, None],
-    'Department': ['HR', 'IT', 'Finance', 'HR', 'IT', 'Finance', 'HR', 'IT', 'HR']
+raw = pd.DataFrame({
+    "id": [1, 1, 2, 3],
+    "city": ["  New York", "Boston  ", "Chicago", None],
+    "value": [10.5, 9.7, 11.2, 13.0],
 })
 
-# Data Cleaning
-cleaner = DataCleaner(data)
-cleaned_data = cleaner.remove_duplicates().fill_missing(strategy="mean").standardize_columns()
+# Clean data
+cleaner = DataCleaner(raw)
+cleaner.remove_duplicates(subset=["id"])
+cleaner.drop_missing(columns=["city"])
+cleaner.standardize_whitespace(["city"])
+clean = cleaner.data
 
-print("Cleaned Data:")
-print(cleaned_data)
+# Validate data
+validator = DataValidator(clean)
+validator.validate_range("value", 0, 15)
+validator.validate_non_empty()
 
-# Data Validation
-validator = DataValidator(cleaned_data)
-validated_data = validator.validate_non_empty()
-validated_data = validator.validate_range('Age', 20, 60)
+# Filter outliers
+outlier_detector = OutlierDetector(clean)
+inliers = outlier_detector.z_score_outliers(threshold=2.5)
+print(inliers)
+```
 
-print("\nValidated Data:")
-print(validated_data)
+## Modules
 
-# Outlier Detection
-outlier_detector = OutlierDetector(cleaned_data)
-outliers = outlier_detector.z_score_outliers(threshold=2)
+- `Fixmydata.cleaning.DataCleaner`: Common cleaning operations that mutate an internal copy and expose the cleaned `data` property for reuse.
+- `Fixmydata.data_validator.DataValidator`: Range and completeness checks with clear errors on schema mismatches.
+- `Fixmydata.outlier_detector.OutlierDetector`: Z-score and IQR inlier filters with safeguards for missing numeric data.
+- `Fixmydata.utils`: CSV I/O helpers, column name normalization, null counting, and DataFrame info display.
+- `Fixmydata.stats`: Basic descriptive statistics and standalone outlier helpers.
 
-print("\nOutliers Removed:")
-print(outliers)
+## Contributors
+
+| Name                  | Role / Position | Main Contribution                           |
+| --------------------- | --------------- | ------------------------------------------- |
+| Johann Lloyd Megalbio | Leader          | Project management and overall coordination |
+| Albrien Dealino       | Developer       | Core coding and development tasks           |
+| Rafael John Calingin  | Developer       | Coding and implementation of key features   |
+| Shawn Bolores Sillote | Developer       | Development of system modules and functions |

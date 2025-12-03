@@ -11,7 +11,7 @@ where = ["src"]
 
 [metadata]
 name = "Fixmydata" 
-version = "0.1.0"
+version = "3.11"
 description = "Fixmydata is a lightweight helper library built on top of pandas for cleaning, validating, and inspecting tabular datasets."
 long_description = "file: README.md"  
 long_description_content_type = "text/markdown"  
