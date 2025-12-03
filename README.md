@@ -13,6 +13,7 @@
 pip install fixmydata
 
 # Usage
+```bash
 from fixmydata import DataCleaner, DataValidator, OutlierDetector
 import pandas as pd
 from fixmydata import DataCleaner, DataValidator, OutlierDetector
