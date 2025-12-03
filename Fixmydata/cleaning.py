@@ -7,12 +7,12 @@ from pandas.api import types as pd_types
 
 class DataCleaner:
     def __init__(self, data: pd.DataFrame):
-        self._data = data.copy()  # private attribute to hold the dataframe
+        self.__data = data.copy()  # private attribute to hold the dataframe
 
     def remove_duplicates(self) -> pd.DataFrame:
         """Remove duplicate rows from the dataframe."""
         self._data = self._data.drop_duplicates()
-        return self._data
+        return self.__data
 
     def fill_missing(self, strategy: str = "mean", columns: list[str] | None = None) -> pd.DataFrame:
         """Fill missing values using the chosen strategy.
@@ -38,7 +38,7 @@ class DataCleaner:
 
         if strategy == "mode":
             fills = self._data[target_columns].mode(dropna=True).iloc[0]
-            self._data[target_columns] = self._data[target_columns].fillna(fills)
+            self._data[target_columns] = self.__data[target_columns].fillna(fills)
             return self._data
 
         numeric_columns = [col for col in target_columns if pd_types.is_numeric_dtype(self._data[col])]
@@ -46,12 +46,12 @@ class DataCleaner:
             raise TypeError("Mean and median strategies require at least one numeric column.")
 
         if strategy == "mean":
-            fills = self._data[numeric_columns].mean()
+            fills = self.__data[numeric_columns].mean()
         else:
-            fills = self._data[numeric_columns].median()
+            fills = self.__data[numeric_columns].median()
 
         self._data[numeric_columns] = self._data[numeric_columns].fillna(fills)
-        return self._data
+        return self.__data
 
     def standardize_columns(self) -> pd.DataFrame:
         """Normalize column names by lower-casing and collapsing whitespace."""

@@ -10,24 +10,15 @@
 - **Modular OOP Design**: Utilizes encapsulation, inheritance, and polymorphism.
 
 ## Installation
-
-### Install via PyPI:
-To install the stable version from PyPI, run:
 ```bash
 pip install fixmydata
-
+```
 # Usage
-
-Import the Library
-# Import the library
-from fixmydata import DataCleaner, DataValidator, OutlierDetector
-
-Example Usage
-
+```python 
 import pandas as pd
 from fixmydata import DataCleaner, DataValidator, OutlierDetector
 
-# Sample Data
+
 data = pd.DataFrame({
     'Age': [22, 25, 27, 30, 28, None, 29, 27, 27],
     'Salary': [50000, 55000, None, 60000, 62000, 64000, 58000, 57000, None],
