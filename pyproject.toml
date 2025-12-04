@@ -1,30 +1,43 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "Fixmydata"
+version = "3.11"
+description = "Fixmydata is a lightweight helper library built on top of pandas for cleaning, validating, and inspecting tabular datasets."
+readme = "README.md"
+requires-python = ">=3.7"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Johann Lloyd Megalbio", email = "megalbio.johann@gmail.com" },
+]
+keywords = [
+    "data-cleaning",
+    "validation",
+    "outliers",
+    "pandas",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "pandas>=1.3,<2",
+    "numpy>=1.21,<2",
+]
+
+[project.urls]
+Homepage = "https://github.com/DirtCrew53/Fixmydata"
+Repository = "https://github.com/DirtCrew53/Fixmydata"
 
 [tool.setuptools]
 packages = ["Fixmydata"]
-include_package_data = true
+include-package-data = true
 
-[tool.setuptools.packages.find]
-where = ["src"]
+[tool.setuptools.package-dir]
+Fixmydata = "src"
 
-[metadata]
-name = "Fixmydata" 
-version = "3.11"
-description = "Fixmydata is a lightweight helper library built on top of pandas for cleaning, validating, and inspecting tabular datasets."
-long_description = "file: README.md"  
-long_description_content_type = "text/markdown"  
-author = "Johann Lloyd Megalbio"
-author_email = "megalbio.johann@gmail.com"
-url = "https://github.com/DirtCrew53/Fixmydata"  
-
-[options]
-packages = find:
-install_requires = [
-    "pandas",  
-    "numpy"
-]
-
-[options.package_data]
-* = ["*.txt", "*.rst", "*.md"] 
+[tool.setuptools.package-data]
+"*" = ["*.txt", "*.rst", "*.md"]
