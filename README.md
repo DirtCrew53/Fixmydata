@@ -4,7 +4,10 @@ Fixmydata is a lightweight helper library built on top of pandas for cleaning, v
 
 ## Installation
 
-The project targets Python 3.7+ and depends on pandas and numpy. You can install the package from source by cloning the repository and installing with pip:
+- **Python:** 3.7+
+- **Required dependencies:** pandas, numpy
+
+The library is currently distributed from source. Clone the repository and install in editable mode:
 
 ```bash
 pip install -e .
@@ -12,10 +15,10 @@ pip install -e .
 
 ## Features
 
-- **Cleaning**: Deduplicate rows, drop or fill missing values, remove columns, and trim whitespace with `DataCleaner`.
-- **Validation**: Assert value ranges and check for missing or empty data with `DataValidator`.
-- **Outlier filtering**: Identify inliers using Z-score or IQR methods while ignoring non-numeric columns via `OutlierDetector`.
-- **Utilities**: CSV load/save helpers, column name normalization, null counting, and quick DataFrame introspection.
+- **Cleaning:** Deduplicate rows, drop or fill missing values, remove columns, and trim whitespace with `DataCleaner`.
+- **Validation:** Assert value ranges and check for missing or empty data with `DataValidator`.
+- **Outlier filtering:** Identify inliers using Z-score or IQR methods while ignoring non-numeric columns via `OutlierDetector`.
+- **Utilities:** CSV load/save helpers, column name normalization, null counting, and quick DataFrame introspection.
 
 ## Quickstart
 
@@ -29,22 +32,35 @@ raw = pd.DataFrame({
     "value": [10.5, 9.7, 11.2, 13.0],
 })
 
-# Clean data
+# Clean data (methods mutate an internal copy; access the result via .data)
 cleaner = DataCleaner(raw)
 cleaner.remove_duplicates(subset=["id"])
 cleaner.drop_missing(columns=["city"])
 cleaner.standardize_whitespace(["city"])
 clean = cleaner.data
 
-# Validate data
+# Validate data (raises assertion errors on failures)
 validator = DataValidator(clean)
 validator.validate_range("value", 0, 15)
 validator.validate_non_empty()
 
-# Filter outliers
+# Filter outliers (returns an inliers-only DataFrame)
 outlier_detector = OutlierDetector(clean)
 inliers = outlier_detector.z_score_outliers(threshold=2.5)
 print(inliers)
+```
+
+### Using utilities
+
+```python
+from Fixmydata import utils
+
+# Save cleaned data for reuse
+utils.to_csv(clean, "cleaned.csv")
+
+# Load it later and inspect quickly
+reloaded = utils.from_csv("cleaned.csv")
+utils.df_info(reloaded)
 ```
 
 ## Modules
@@ -55,6 +71,16 @@ print(inliers)
 - `Fixmydata.utils`: CSV I/O helpers, column name normalization, null counting, and DataFrame info display.
 - `Fixmydata.stats`: Basic descriptive statistics and standalone outlier helpers.
 
+## Error handling and caveats
+
+- Validation methods raise assertion errors when ranges are violated or required fields are empty.
+- Outlier filtering ignores non-numeric columns and may drop rows with missing numeric values depending on the method.
+- Cleaning methods mutate internal state; re-instantiate `DataCleaner` if you need to preserve the original DataFrame.
+
+## Documentation
+
+Formal API docs are not yet published. Explore the source modules above for deeper detail.
+
 ## Contributors
 
 | Name                  | Role / Position | Main Contribution                           |
@@ -63,3 +89,11 @@ print(inliers)
 | Albrien Dealino       | Developer       | Core coding and development tasks           |
 | Rafael John Calingin  | Developer       | Coding and implementation of key features   |
 | Shawn Bolores Sillote | Developer       | Development of system modules and functions |
+
+## Contributing
+
+Contributions are welcome! Please open an issue to discuss changes, then submit a pull request with relevant tests.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
