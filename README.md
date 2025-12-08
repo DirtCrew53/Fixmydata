@@ -12,6 +12,24 @@ The library is currently distributed from source. Clone the repository and insta
 ```bash
 pip install -e .
 ```
+### Troubleshooting installation on Windows
+
+If you see a build error for `pandas` (for example: `cl.exe failed with exit code 2`), the installer is trying to compile pandas from source instead of using a pre-built wheel.
+
+1. Make sure you are using a supported Python (3.8–3.12) and have an up-to-date `pip`:
+   ```powershell
+   python -m pip install --upgrade pip setuptools wheel
+   ```
+2. Force-install pandas and numpy from official wheels (no compilation):
+   ```powershell
+   python -m pip install --only-binary=:all: "pandas>=1.5" "numpy>=1.23"
+   ```
+3. Re-run the library install:
+   ```powershell
+   pip install -e .
+   ```
+
+If a wheel is unavailable for your Python version/architecture, install the **Microsoft C++ Build Tools** and retry, or use a Python version with published pandas wheels.
 
 ## Features
 
