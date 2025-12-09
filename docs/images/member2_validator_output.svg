@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="160" viewBox="0 0 720 160" role="img" aria-label="DataValidator output">
+  <style>
+    .bg { fill: #f8f8f8; stroke: #d0d0d0; }
+    .text { font-family: 'Courier New', monospace; font-size: 16px; fill: #222; }
+    .title { font-weight: bold; }
+  </style>
+  <rect class="bg" x="1" y="1" width="718" height="158" rx="8" ry="8" />
+  <text class="text title" x="20" y="35">DataValidator checks</text>
+  <text class="text" x="20" y="70">Validation passed!</text>
+  <text class="text" x="20" y="100">- No missing values detected</text>
+  <text class="text" x="20" y="130">- Age within expected range [0, 90]</text>
+</svg>
