@@ -36,7 +36,7 @@ Output:
 3          895         0       3                              Wirz, Mr. Albert    male      0      0   315154   8.6625   NaN         S
 4          896         1       3  Hirvonen, Mrs. Alexander (Helga E Lindqvist)  female      1      1  3101298  12.2875   NaN         S
 
-[5 rows x 12 columns]
+[418 rows x 12 columns]
 ```
 
 ### Inspect missing values
@@ -84,7 +84,7 @@ Output:
 3          895         0       3                              Wirz, Mr. Albert      0      0   315154   8.6625  Unknown         S
 4          896         1       3  Hirvonen, Mrs. Alexander (Helga E Lindqvist)      1      1  3101298  12.2875  Unknown         S
 
-[5 rows x 12 columns]
+[418 rows x 12 columns]
 ```
 
 ### Validate
@@ -153,7 +153,7 @@ Output:
 3  2014-05-09 00:00:00   324000.0       3.0       2.25          2150.0    6380.00     1.0         0.0   145.604088        4.0     7.0      1330.0          820.0      1912           0.0           820 NW 95th St    Seattle  WA 98117     USA
 4  2014-05-10 00:00:00   549900.0       5.0       2.75          1890.0    4160.00     1.0         0.0    46.534953        3.0     7.0      1890.0            0.0      1976           0.0        10834 31st Ave SW    Seattle  WA 98146     USA
 
-[5 rows x 18 columns]
+[4140 rows x 18 columns]
 ```
 
 ### Clean, filter outliers, and summarize
