@@ -61,7 +61,7 @@ save_to_csv(df_no_outliers, "datasets/cleaned.csv")
   )
   print(df_clean.head())
   ```
-  ![DataCleaner sample output](images/member1_cleaner_output.svg)
+
 - **Benefit:** Ensures consistent, reproducible cleaning steps so subsequent analyses operate on a trustworthy dataset.
 
 ## 3. Member 2: DataValidator Deep Dive
@@ -82,7 +82,7 @@ save_to_csv(df_no_outliers, "datasets/cleaned.csv")
   validator.validate_range("Age", 0, 90)
   print("Validation passed!")
   ```
-  ![Validation checks](images/member2_validator_output.svg)
+
 - **Benefit:** Catches completeness or range issues early, preventing invalid records from contaminating models.
 
 ## 4. Member 3: OutlierDetector Deep Dive
@@ -102,7 +102,7 @@ save_to_csv(df_no_outliers, "datasets/cleaned.csv")
   df_no_outliers = detector.iqr_outliers(columns=["Fare", "Age"], threshold=1.5)
   print(df_no_outliers.describe())
   ```
-  ![IQR outlier summary](images/member3_outlier_output.svg)
+
 - **Benefit:** Removes noise so summary statistics and models reflect typical patterns rather than rare extremes.
 
 ## 5. Leader/Member 4: Real-World Use Case & Conclusion
