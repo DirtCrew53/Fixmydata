@@ -9,7 +9,6 @@
   - **`DataValidator`** — enforce completeness and value constraints.
   - **`OutlierDetector`** — flag and filter outliers via Z-score and IQR methods.
 
-![Fixmydata pipeline diagram](images/fixmydata_flow.svg)
 
 ```python
 from fixmydata import DataCleaner, DataValidator, OutlierDetector
