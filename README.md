@@ -99,6 +99,8 @@ utils.df_info(reloaded)
 
 Formal API docs are not yet published. Explore the source modules above for deeper detail.
 
+- Walkthroughs: See [`Fixmydata_demo.md`](Fixmydata_demo.md) for a GitHub-friendly project demo and presentation outline mirroring the companion notebook.
+
 ## Contributors
 
 | Name                  | Role / Position | Main Contribution                           |
