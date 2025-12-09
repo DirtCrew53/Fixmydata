@@ -8,6 +8,7 @@ pip install Fixmydata
 ```
 - **Python:** 3.7+
 - **Required dependencies:** pandas, numpy
+  
 if you're installing from source:
 ```bash
 pip install -e .
