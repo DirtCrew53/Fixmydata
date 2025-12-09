@@ -51,10 +51,10 @@ raw = pd.DataFrame({
 })
 
 # Clean data (methods mutate an internal copy; access the result via .data)
-cleaner = DataCleaner(raw)
-cleaner.remove_duplicates(subset=["id"])
-cleaner.drop_missing(columns=["city"])
-cleaner.standardize_whitespace(["city"])
+cleaning = DataCleaner(raw)
+cleaning.remove_duplicates(subset=["id"])
+cleaning.drop_missing(columns=["city"])
+cleaning.standardize_whitespace(["city"])
 clean = cleaner.data
 
 # Validate data (raises assertion errors on failures)
@@ -63,8 +63,8 @@ validator.validate_range("value", 0, 15)
 validator.validate_non_empty()
 
 # Filter outliers (returns an inliers-only DataFrame)
-outlier_detector = OutlierDetector(clean)
-inliers = outlier_detector.z_score_outliers(threshold=2.5)
+detector = OutlierDetector(clean)
+inliers = detector.z_score_outliers(threshold=2.5)
 print(inliers)
 ```
 
