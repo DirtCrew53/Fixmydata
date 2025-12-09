@@ -3,12 +3,12 @@
 Fixmydata is a lightweight helper library built on top of pandas for cleaning, validating, and inspecting tabular datasets. It provides quick, chainable utilities for removing common data issues so you can focus on analysis.
 
 ## Installation
-
+```bash
+pip install Fixmydata
+```
 - **Python:** 3.7+
 - **Required dependencies:** pandas, numpy
-
-The library is currently distributed from source. Clone the repository and install in editable mode:
-
+if you're installing from source:
 ```bash
 pip install -e .
 ```
